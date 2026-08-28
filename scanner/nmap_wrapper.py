@@ -25,7 +25,9 @@ def scan_target(target_ip, ports="1-1024"):
         }
 
         for proto in scanner[host].all_protocols():
-            for port in scanner[host][proto].keys():
+            port_list = scanner[host][proto].keys()
+
+            for port in port_list:
                 port_info = scanner[host][proto][port]
                 results[host]["ports"].append({
                     "port": port,
