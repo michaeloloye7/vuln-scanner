@@ -13,8 +13,8 @@ def scan_target(target_ip, ports="1-1024"):
     """
     scanner = nmap.PortScanner()
 
-    print(f"[*] Scanning {target_ip_} on ports {ports}...")
-    scanner.scan(target_ip, ports, arguments="-sV")
+    print(f"[*] Scanning {target_ip} on ports {ports}...")
+    scanner.scan(target_ip, ports, arguments="-sV -Pn")
 
     results = {}
 
@@ -32,8 +32,8 @@ def scan_target(target_ip, ports="1-1024"):
                 results[host]["ports"].append({
                     "port": port,
                     "state": port_info["state"],
-                    "name": port_info["name"],
-                    "product": port_info.get("product", ""),
+                    "name": port_info["name"], 
+                    "product": port_info.get("product", ""), # product and version use get to avoid KeyError if not present
                     "version": port_info.get("version", "")
                 })
     return results
