@@ -37,7 +37,8 @@ def run_vulnerability_scan(target_ip, ports="1-1024"):
                 "name": port_entry["name"],
                 "product": product,
                 "version": version,
-                "cves": cves
+                "cves": cves,
+                "searched": bool(product and version)
             })
 
     return findings
@@ -59,6 +60,8 @@ for host, data in results.items():
             print("    CVEs:")
             for cve in port["cves"]:
                 print(f"      -> {cve['cve_id']} | severity: {cve['severity']} | {cve['description'][:80]}")
-        else:
+        elif port["searched"]:
             print("    ->No CVEs found.")
+        else:
+            print("    -> Skipped (no version detected)")
                                      
