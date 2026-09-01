@@ -23,7 +23,7 @@ Port 21 - ftp (vsftpd 2.3.4)
 
 ## Setup
 ### Prerequisites: Python 3.8+, Nmap installed and on your system PATH
-git clone https://github.com/<michaeloloye7>/vuln-scanner.git
+git clone https://github.com/michaeloloye7/vuln-scanner.git
 
 cd vuln-scanner
 
