@@ -1,6 +1,7 @@
 import argparse
 from scanner.nmap_wrapper import scan_target
 from scanner.cve_lookup import lookup_cve
+from scanner.report_generator import generate_html_report
 
 def run_vulnerability_scan(target_ip, ports="1-1024"):
     """ 
@@ -47,6 +48,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Vulnerability scanner: Nmap + CVE lookup")
     parser.add_argument("target", help="The target IP address to scan.")
     parser.add_argument("--ports", default="1-1024", help="The range of ports to scan (default: 1-1024).")
+    parser.add_argument("--output", default="reports/scan_report.html", help="Path to save the HTML report")
 
     args = parser.parse_args()
 
@@ -64,4 +66,6 @@ for host, data in results.items():
             print("    ->No CVEs found.")
         else:
             print("    -> Skipped (no version detected)")
+
+    generate_html_report(results, args.output)
                                      
