@@ -30,7 +30,7 @@ cd vuln-scanner
 pip install -r requirements.txt
 
 ### Usage
-python main.py <target-ip> 
+python main.py (insert your target ip here)
 
 ## What I learned
 - Wrapping and parsing output from a real security tool in a program
